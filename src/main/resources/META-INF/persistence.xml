@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="heritagePU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Strategie SINGLE_TABLE -->
+        <class>ma.ali.mahraoui.heritage.model.singletable.Vehicule</class>
+        <class>ma.ali.mahraoui.heritage.model.singletable.Voiture</class>
+        <class>ma.ali.mahraoui.heritage.model.singletable.Moto</class>
+
+        <!-- Strategie JOINED -->
+        <class>ma.ali.mahraoui.heritage.model.joined.Employe</class>
+        <class>ma.ali.mahraoui.heritage.model.joined.Developpeur</class>
+        <class>ma.ali.mahraoui.heritage.model.joined.Manager</class>
+
+        <!-- Strategie TABLE_PER_CLASS -->
+        <class>ma.ali.mahraoui.heritage.model.tableperclass.Produit</class>
+        <class>ma.ali.mahraoui.heritage.model.tableperclass.Livre</class>
+        <class>ma.ali.mahraoui.heritage.model.tableperclass.Electronique</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <!-- Configuration JDBC H2 en memoire -->
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:heritage;DB_CLOSE_DELAY=-1"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
+            <!-- Proprietes specifiques Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
